@@ -8,19 +8,19 @@
 import Foundation
 
 struct EmojiMemoryTheme {
-    var name: String
-    var emojis: [String]
-    var numberOfPairsOfCards: Int
-    var gradientColors: [String]
+    let name: String
+    let emojis: [String]
+    let numberOfPairsOfCards: Int
+    let gradientColors: [String]
     
-    enum numberOfPairs {
+    enum numberOfPairsOfCards {
         case all
         case random
         case specific(numberOfPairs: Int)
     }
     
     
-    init(name: String, emojis: [String], numberOfPairsOfCards: numberOfPairs = .all, gradientColors: [String]) {
+    init(name: String, emojis: [String], numberOfPairsOfCards: numberOfPairsOfCards = .all, gradientColors: [String]) {
         self.name = name
         self.emojis = emojis
         self.gradientColors = gradientColors

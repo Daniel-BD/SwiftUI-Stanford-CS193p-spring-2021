@@ -12,7 +12,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     
     private(set) var cards: Array<Card>
     
-    private var indexOfTheOneAndOnlyFaceUpCard: Int?
+    private var indexOfTheOneAndOnlyFaceUpCard: Int? {
+        get { cards.indices.filter({ cards[$0].isFaceUp }).oneAndOnly }
+        set { cards.indices.forEach { cards[$0].isFaceUp = ($0 == newValue) } }
+    }
     
     private var timeOfLastTouch: Date?
     
@@ -22,50 +25,34 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
            !cards[chosenIndex].isMatched
         {
             if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard, let timeOfLastTouch = timeOfLastTouch {
+                // Second card (of two) tapped - determine if cards match or mismatch and score points
                 let secondsBetweenTouches = abs(timeOfLastTouch.timeIntervalSinceNow.rounded())
-                print(secondsBetweenTouches)
+                let cardsToScoreIndices = [chosenIndex, potentialMatchIndex]
                 
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     // Sucessfull match
-                    
-                    cards[chosenIndex].isMatched = true
-                    cards[potentialMatchIndex].isMatched = true
+                    cardsToScoreIndices.forEach { cards[$0].isMatched = true }
                     score += max(10 - Int(secondsBetweenTouches), 1) * 2
                 } else {
                     // Mismatch
-                    if cards[chosenIndex].hasAlreadyBeenSeen {
-                        score -= min(max(Int(secondsBetweenTouches) * 3, 2), 10)
-                    } else {
-                        cards[chosenIndex].hasAlreadyBeenSeen = true
-                    }
-                    
-                    if cards[potentialMatchIndex].hasAlreadyBeenSeen {
-                        score -= min(max(Int(secondsBetweenTouches) * 3, 2), 10)
-                    } else {
-                        cards[potentialMatchIndex].hasAlreadyBeenSeen = true
+                    cardsToScoreIndices.forEach {
+                        score -= cards[$0].hasAlreadyBeenSeen ? min(max(Int(secondsBetweenTouches) * 3, 2), 10) : 0
+                        cards[$0].hasAlreadyBeenSeen = true
                     }
                 }
-                
-                indexOfTheOneAndOnlyFaceUpCard = nil
                 self.timeOfLastTouch = nil
-                
+                cards[chosenIndex].isFaceUp = true
             } else {
-                for index in cards.indices {
-                    cards[index].isFaceUp = false
-                }
-                
+                // First card (of two) tapped
                 indexOfTheOneAndOnlyFaceUpCard = chosenIndex
                 timeOfLastTouch = Date.init()
             }
-            cards[chosenIndex].isFaceUp.toggle()
         }
-        
-        //print("\(cards)")
     }
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
-        cards = Array<Card>()
-        
+        cards = []
+        // add numberOfPairsOfCards x 2 cards to cards array
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = createCardContent(pairIndex)
             cards.append(Card(content: content, id: pairIndex * 2))
@@ -76,10 +63,22 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     }
     
     struct Card: Identifiable {
-        var isFaceUp: Bool = false
-        var isMatched: Bool = false
+        var isFaceUp = false
+        var isMatched = false
         var hasAlreadyBeenSeen = false
-        var content: CardContent
-        var id: Int
+        let content: CardContent
+        let id: Int
+    }
+}
+
+extension Array {
+    /// If there's exactly one element in the array, oneAndOnly returns that element, otherwise returns nil.
+    var oneAndOnly: Element? {
+        if self.count == 1 {
+            return self.first
+        }
+        else {
+            return nil
+        }
     }
 }
