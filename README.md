@@ -12,7 +12,7 @@ Lectures, videos & project files from Stanford can be found [here](https://cs193
 :white_check_mark:&nbsp; Lecture 4: More MVVM, enum, Optionals  
 :white_check_mark:&nbsp; Assignment 2  
 &nbsp;&nbsp;&nbsp;&nbsp;              :white_check_mark:  Extra credit tasks  
-:white_large_square:&nbsp; Lecture 5: Properties, Layout, @ViewBuilder  
+:white_check_mark:&nbsp; Lecture 5: Properties, Layout, @ViewBuilder  
 :white_large_square:&nbsp; Lecture 6: Protocols, Shapes  
 :white_large_square:&nbsp; Assignment 3  
 &nbsp;&nbsp;&nbsp;&nbsp;              :white_large_square:&nbsp; Extra credit tasks  
