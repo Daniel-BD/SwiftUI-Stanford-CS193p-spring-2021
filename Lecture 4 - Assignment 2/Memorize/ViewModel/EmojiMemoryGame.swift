@@ -19,32 +19,38 @@ class EmojiMemoryGame: ObservableObject {
     
     @Published private var model: MemoryGame<String>
     private var theme: EmojiMemoryTheme
-    private(set) var color: Color
+    private(set) var gradientColor: Gradient
     
     init() {
         let startTheme = EmojiMemoryTheme.Themes.randomElement()!
         theme = startTheme
-        color = Self.translateStringToColor(colorName: startTheme.color)
+        gradientColor = Self.translateStringArrayToGradient(colors: startTheme.gradientColors)
         model = Self.createMemoryGame(numberOfPairs: startTheme.numberOfPairsOfCards, emojis: startTheme.emojis)
     }
     
-    static private func translateStringToColor(colorName: String) -> Color {
-        switch colorName {
-        case "blue":
-            return .blue
-        case "green":
-            return .green
-        case "red":
-            return .red
-        case "yellow":
-            return .yellow
-        case "orange":
-            return .orange
-        case "purple":
-            return .purple
-        default:
-            return .blue
+    static private func translateStringArrayToGradient(colors: [String]) -> Gradient {
+        var gradientColors = [Color]()
+        
+        for color in colors {
+            switch color {
+            case "blue":
+                gradientColors.append(.blue)
+            case "green":
+                gradientColors.append(.green)
+            case "red":
+                gradientColors.append(.red)
+            case "yellow":
+                gradientColors.append(.yellow)
+            case "orange":
+                gradientColors.append(.orange)
+            case "purple":
+                gradientColors.append(.purple)
+            default:
+                gradientColors.append(.blue)
+            }
         }
+        
+        return Gradient(colors: gradientColors)
     }
     
     // MARK: Model access
@@ -75,7 +81,7 @@ class EmojiMemoryGame: ObservableObject {
             theme = EmojiMemoryTheme.Themes.randomElement()!
         }
         
-        color = Self.translateStringToColor(colorName: theme.color)
+        gradientColor = Self.translateStringArrayToGradient(colors: theme.gradientColors)
         model = Self.createMemoryGame(numberOfPairs: theme.numberOfPairsOfCards, emojis: theme.emojis)
     }
 }

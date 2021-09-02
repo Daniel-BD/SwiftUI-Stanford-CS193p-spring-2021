@@ -14,40 +14,48 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int?
     
+    private var timeOfLastTouch: Date?
+    
     mutating func choose(_ card: Card) {
         if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}),
            !cards[chosenIndex].isFaceUp,
            !cards[chosenIndex].isMatched
         {
-            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
+            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard, let timeOfLastTouch = timeOfLastTouch {
+                let secondsBetweenTouches = abs(timeOfLastTouch.timeIntervalSinceNow.rounded())
+                print(secondsBetweenTouches)
+                
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     // Sucessfull match
                     
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
-                    score += 2
+                    score += max(10 - Int(secondsBetweenTouches), 1) * 2
                 } else {
                     // Mismatch
                     if cards[chosenIndex].hasAlreadyBeenSeen {
-                        score -= 1
+                        score -= min(max(Int(secondsBetweenTouches) * 3, 2), 10)
                     } else {
                         cards[chosenIndex].hasAlreadyBeenSeen = true
                     }
                     
                     if cards[potentialMatchIndex].hasAlreadyBeenSeen {
-                        score -= 1
+                        score -= min(max(Int(secondsBetweenTouches) * 3, 2), 10)
                     } else {
                         cards[potentialMatchIndex].hasAlreadyBeenSeen = true
                     }
                 }
-                indexOfTheOneAndOnlyFaceUpCard = nil
-            } else {
                 
+                indexOfTheOneAndOnlyFaceUpCard = nil
+                self.timeOfLastTouch = nil
+                
+            } else {
                 for index in cards.indices {
                     cards[index].isFaceUp = false
                 }
                 
                 indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+                timeOfLastTouch = Date.init()
             }
             cards[chosenIndex].isFaceUp.toggle()
         }
