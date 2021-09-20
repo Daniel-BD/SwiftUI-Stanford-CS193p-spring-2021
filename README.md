@@ -3,6 +3,15 @@ This repo is my code from following along with Stanford's CS193p - Developing Ap
 
 Lectures, videos & project files from Stanford can be found [here](https://cs193p.sites.stanford.edu).
 
+## Some of what I've built during the course
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/36152732/133978163-1da16877-6e05-425b-8591-8cd9769abc26.gif" width="60%" height="60%"/>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/36152732/131686850-187730a1-63ec-4572-ba76-cdf83939daf1.gif" width="20%" height="20%"/>
+</p> 
+
+
 ## Progress
 
 :white_check_mark:&nbsp; Lecture 1: Getting Started with SwiftUI  
@@ -15,7 +24,7 @@ Lectures, videos & project files from Stanford can be found [here](https://cs193
 :white_check_mark:&nbsp; Lecture 5: Properties, Layout, @ViewBuilder  
 :white_check_mark:&nbsp; Lecture 6: Protocols, Shapes  
 :white_check_mark:&nbsp; Assignment 3  
-&nbsp;&nbsp;&nbsp;&nbsp;              :white_large_square:&nbsp; Extra credit tasks  
+&nbsp;&nbsp;&nbsp;&nbsp;              :white_check_mark:&nbsp; Extra credit tasks  
 :white_large_square:&nbsp; Lecture 7: ViewModifier, Animation  
 :white_large_square:&nbsp; Lecture 8: Animation Demo  
 :white_large_square:&nbsp; Assignment 4  
