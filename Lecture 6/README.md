@@ -1,11 +1,9 @@
-#  Memorize - Lecture 5
+#  Memorize - Lecture 6
 
-Lecture 5 covers:
+Lecture 6 covers:
 
-- Computed properties
-- Property Observers
-- Access control
-- Functional programming (chaining functions)
-- Extensions
-- Replacing "magic numbers" with namned constants
+- Protocols
+- Protocol extensions
+- Generics and protocols
+- Drawing custom shapes
 - and more
