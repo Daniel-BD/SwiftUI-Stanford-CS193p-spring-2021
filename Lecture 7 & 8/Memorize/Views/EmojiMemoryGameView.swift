@@ -57,6 +57,7 @@ struct EmojiMemoryGameView: View {
             Text(game.themeName)
                 .fontWeight(.bold)
                 .font(.title)
+                .animation(nil)
             Text("Score: \(game.score)")
                 .fontWeight(.regular)
                 .font(.title2)
@@ -111,12 +112,10 @@ struct EmojiMemoryGameView: View {
     
     var newGame: some View {
         Button ("New Game") {
-            
             withAnimation{
                 dealt = []
                 game.newGame()
             }
-            
         }
     }
     
@@ -159,6 +158,7 @@ struct CardView: View {
                 Text(card.content)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
                     .animation(Animation.linear (duration: 1).repeatForever(autoreverses: false))
+                    .padding(5)
                     .font(Font.system(size: DrawingConstants.fontSize))
                     .scaleEffect(scale(thatFits: geometry.size))
             }
