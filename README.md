@@ -6,11 +6,21 @@ Lectures, videos & project files from Stanford can be found [here](https://cs193
 ## Some of what I've built during the course
 
 <p align="center">
+  <img src="https://user-images.githubusercontent.com/36152732/134139654-61c4a1c2-ea48-456c-a518-148722bb7762.gif" width="25%" height="25%"/>
+   &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="https://user-images.githubusercontent.com/36152732/133978163-1da16877-6e05-425b-8591-8cd9769abc26.gif" width="60%" height="60%"/>
-  &nbsp; &nbsp; &nbsp; &nbsp;
-<img src="https://user-images.githubusercontent.com/36152732/131686850-187730a1-63ec-4572-ba76-cdf83939daf1.gif" width="20%" height="20%"/>
 </p> 
 
+### A small selection of topics covered:
+
+|   |  |  |
+| ------------- | ------------- | ------------- |
+| The MVVM architecture  | Access control | @State |
+| @ViewBuilder | Property Observers  | Extensions | 
+| Protocol driven development | Drawing custom shapes | ViewModifiers | 
+| Implicit animations | Explicit animations | Animation curves |
+| AnimatableData | MatchedGeometry effect |  Transitions (symmetric/asymmetric) |
+| Timers in animations | | |
 
 ## Progress
 
@@ -25,8 +35,8 @@ Lectures, videos & project files from Stanford can be found [here](https://cs193
 :white_check_mark:&nbsp; Lecture 6: Protocols, Shapes  
 :white_check_mark:&nbsp; Assignment 3  
 &nbsp;&nbsp;&nbsp;&nbsp;              :white_check_mark:&nbsp; Extra credit tasks  
-:white_large_square:&nbsp; Lecture 7: ViewModifier, Animation  
-:white_large_square:&nbsp; Lecture 8: Animation Demo  
+:white_check_mark:&nbsp; Lecture 7: ViewModifier, Animation  
+:white_check_mark:&nbsp; Lecture 8: Animation Demo  
 :white_large_square:&nbsp; Assignment 4  
 &nbsp;&nbsp;&nbsp;&nbsp;              :white_large_square:&nbsp; Extra credit tasks  
 :white_large_square:&nbsp; Lecture 9: EmojiArt, Drag/Drop  
